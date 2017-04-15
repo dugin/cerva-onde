@@ -1,0 +1,128 @@
+<!--
+  Generated template for the BarDetail page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{bar.name}}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+
+    <div class="header-image">
+        <ion-slides class="slider" *ngIf="bar">
+
+            <ion-slide>
+                <img [src]="bar.logo" class="slide-image"/>
+            </ion-slide>
+            <ion-slide *ngFor="let photo of bar.photos">
+                <img [src]="photo" class="slide-image"/>
+            </ion-slide>
+
+        </ion-slides>
+
+    </div>
+
+
+    <div class="circle-icon">
+        <img width="auto" height="40" src="assets/icon/localizacao_yellow.svg" alt="">
+    </div>
+
+
+    <ion-card #card class="card-container">
+
+
+        <ion-card-content class="card-content">
+
+            <span class="distance"> {{roundDistance()}} km</span>
+
+            <span
+                class="street">  {{bar.address.street}},   {{bar.address.number}} - {{bar.address.neighborhood}} </span>
+
+            <div class="city">
+                {{bar.address.city}} - {{bar.address.state}}
+            </div>
+
+            <hr class="line">
+
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-6>
+                        <div *ngIf="setTime().type == 0" class="opening-hours"><span>{{setWeekDay()}} </span> <span>{{setTime().open}} - {{setTime().close}} </span>
+                        </div>
+                        <div *ngIf="setTime().type != 0" class="opening-hours"><span>{{setWeekDay()}} </span> <span>{{setTime().msg}} </span>
+                        </div>
+
+
+                    </ion-col>
+
+                    <ion-col col-6>
+                        <span class="tel">  TEL</span> <span style="font-weight: 600"> {{bar.tel}} </span>
+                    </ion-col>
+
+                </ion-row>
+
+            </ion-grid>
+
+            <ion-list class="list-beers" no-lines>
+
+                <ion-item>
+
+                    <div>
+                        <span> TAMANHO</span>
+                        <hr class="line">
+                    </div>
+
+                    <div>
+                        <span>CERVEJA</span>
+                        <hr class="line">
+                    </div>
+
+                    <div>
+                        <span> PREÇO</span>
+                        <hr class="line">
+                    </div>
+
+                </ion-item>
+                <div *ngIf="beersLoaded">
+
+
+                    <ion-item *ngFor="let beerBar of bar.beers">
+                        <span> {{setSize(beerBar.size)}}</span>
+                        <span>{{beerBar.beer.name}}</span>
+                        <span> <span style="font-size: 12px; font-weight: 400"> R$</span> {{displayPrice(beerBar.price)}}</span>
+                    </ion-item>
+
+                </div>
+
+
+            </ion-list>
+
+            <!--<button (click)='onSeeMore()' class="more-list-btn" ion-button icon-right color="list_border" outline>-->
+                <!--veja {{ isSeeMore? 'menos': 'mais'}}-->
+                <!--<ion-icon [name]="isSeeMore? 'ios-arrow-up': 'ios-arrow-down'"></ion-icon>-->
+            <!--</button>-->
+
+
+            <div style="text-align: start">
+                <div class="updated-at">
+                    <img height="20" width="20" style="width: 20px" src="assets/icon/lapis.svg" alt=""> Atualizado em
+                    {{updatedAt}}
+                </div>
+            </div>
+
+
+        </ion-card-content>
+    </ion-card>
+
+    <div [style.margin-top]="cardHeight" id="map"></div>
+
+
+</ion-content>

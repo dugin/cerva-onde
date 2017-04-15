@@ -1,0 +1,26 @@
+
+<div [ngClass]="{'toolbar-ios': isIOS}" class="toolbar beer-toolbar">
+
+ <img style="padding-left: 5px" width="auto" height="30" src="assets/icon/localizacao_2.svg" alt="">
+  <span  class="title-side-nav"> BARES PRÓXIMOS DE </span>
+</div>
+ <div>
+      <ion-searchbar color="accent" autofocus [debounce]="600" placeholder="Procurar por bairro">
+      </ion-searchbar>
+    </div>
+
+ <ion-content>
+    <ion-list no-lines >
+      <button class="location-btn padding-util" ion-item detail-none >
+   <ion-icon color="primary" name="pin" item-left></ion-icon>
+   <span class="location">   Usar minha localização</span>
+</button>
+
+ <button class="padding-util"  ion-item detail-none >
+   
+   <span class="itens-side-nav">  teste</span>
+</button>
+
+    </ion-list>
+  </ion-content>
+

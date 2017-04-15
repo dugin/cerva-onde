@@ -1,0 +1,76 @@
+ib-page-tabs {
+    .ion-md-bars_icon {
+        content: url("../assets/icon/lista_bares_2.svg");
+        height: 24px;
+        opacity: .4;
+        color: color($colors, primary)
+    }
+
+    .ion-ios-bars_icon {
+        content: url("../assets/icon/lista_bares_2.svg");
+    }
+    .ion-ios-bars_icon-outline, .ion-ios-config_icon-outline {
+        content: url("../assets/icon/lista_bares.svg");
+    }
+
+     .ion-md-config_icon{
+        @extend .ion-md-bars_icon;
+         content: url("../assets/icon/configuracao_2.svg");
+    }
+
+       .ion-ios-config_icon {
+         content: url("../assets/icon/configuracao_2.svg")
+    }
+    .ion-ios-config_icon-outline, .ion-ios-config_icon-outline {
+        content: url("../assets/icon/configuracao.svg")
+    }
+
+       .ion-md-suggest_icon{
+        @extend .ion-md-bars_icon;
+         content: url("../assets/icon/sugira_2.svg");
+    }
+
+       .ion-ios-suggest_icon {
+         content: url("../assets/icon/sugira_2.svg")
+    }
+    .ion-ios-suggest_icon-outline, .ion-ios-suggest_icon-outline {
+        content: url("../assets/icon/sugira.svg")
+    }
+
+    
+
+ #tab-t0-2{
+     
+     
+       margin-top: -7px ;;
+     height: 45px;
+    
+     span{
+         margin-bottom: -4px;
+     }
+ }
+
+}
+
+.tabs-ios .tab-button-icon{   
+    font-size: 3.3rem ;   
+     color: color($colors, primary)
+}
+
+.tabs-md .tab-button-icon {
+    color: color($colors, primary)
+}
+
+.tabs-ios .tab-button{
+     color: color($colors, primary)
+}
+
+.tabs-md[tabsLayout=icon-top] .has-icon .tab-button-text {
+    color: color($colors, primary)
+}
+
+.tabs-md .tab-button[aria-selected=true] {
+    .ion-md-bars_icon {
+        opacity: 1;
+    }
+}

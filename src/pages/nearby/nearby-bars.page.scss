@@ -1,0 +1,21 @@
+ib-page-nearby {
+
+    .item-md ion-icon[item-left] + .item-inner, .item-md ion-icon[item-left] + .item-input{
+        margin-left: 12px;
+    }
+
+    .beer-toolbar {
+        justify-content: flex-start;
+    }
+    .location {
+        font-size: 14px;
+        font-weight: 500;
+        color: color($colors, primary);
+    }
+    .location-btn {
+        border-bottom: 1px solid color($colors, primary) !important;
+    }
+    .padding-util {
+        padding: 0 0 0 10%;
+    }
+}

@@ -1,0 +1,120 @@
+<!--
+  Generated template for the SuggestBeer page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>CADASTRAR CERVEJAS</ion-title>
+
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+    <form (submit)="onRegister()">
+
+        <ion-grid>
+
+
+            <!--   <ion-row>
+                    <ion-col col-12>
+                        <ion-item>
+                            <ion-label color="primary" floating>Telefone</ion-label>
+                            <ion-input type="text"></ion-input>
+                        </ion-item>
+                    </ion-col>
+
+                </ion-row>-->
+
+
+            <div *ngFor="let beer of beerBar; let i = index" [style.margin-top]="i == 0? '-15px': '0px'">
+
+                <div>
+
+
+                    <ion-row>
+                        <ion-col col-12>
+                            <ion-item >
+                                <div class="search_container">
+                                    <ion-searchbar [value]="beer.beer.name" (ionInput)="autoCompleteBeers($event, i)"
+                                                   color="accent" [debounce]="400"
+                                                   placeholder="Cerveja" [showCancelButton]="false">
+                                    </ion-searchbar>
+                                </div>
+                            </ion-item>
+                        </ion-col>
+
+
+                        <!--<ion-col col-12>-->
+                        <!--<ion-item>-->
+                        <!--<ion-label  color="primary" floating>Nome da Cerveja {{i+1}}</ion-label>-->
+                        <!--<ion-input (keyup)="onKey(i)" [(ngModel)]="beer.beer.name" name="name{{i}}" type="text"></ion-input>-->
+                        <!--</ion-item>-->
+                        <!--</ion-col>-->
+
+
+                        <ion-col *ngIf="showAutoComplete[i]" col-12>
+
+                            <ion-list no-lines>
+                                <button ion-item *ngFor="let str of beersString" detail-none (click)="selectAutoComplete(str,i)">
+                                    {{ str }}
+                                </button>
+                            </ion-list>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+
+                        <ion-col col-6>
+
+                            <ion-item>
+                                <ion-label color="primary" floating>Preço</ion-label>
+                                <ion-input (keyup)="onKey(i)" [(ngModel)]="beer.price" name="price{{i}}" step=0.01
+                                           type="number"></ion-input>
+                            </ion-item>
+                        </ion-col>
+
+
+                        <ion-col col-6 style="align-self: flex-end">
+
+                            <ion-item>
+
+                                <ion-select (ngModelChange)="onChangeSize($event, i)" [ngModel]="beer.size"
+                                            name="size{{i}}">
+                                    <ion-option value="" selected="true">Tamanho</ion-option>
+                                    <ion-option *ngFor="let size of beerSizes" [value]="size" text-capitalize>
+                                        {{size}}
+                                    </ion-option>
+
+                                </ion-select>
+                            </ion-item>
+                        </ion-col>
+
+
+                    </ion-row>
+
+                    <hr *ngIf="bar?.beer?.length > 1+i" class="line">
+                </div>
+            </div>
+
+
+            <div class="btn-register-container">
+
+
+                <button class="btn-register" ion-button color="primary">
+                    Cadastrar
+                </button>
+
+            </div>
+
+        </ion-grid>
+
+    </form>
+
+
+</ion-content>

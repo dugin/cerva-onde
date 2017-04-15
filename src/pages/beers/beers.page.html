@@ -1,0 +1,24 @@
+
+<div [ngClass]="{'toolbar-ios': isIOS}" class="toolbar">
+  <span class="title-side-nav padding-util"> FILTRO DE CERVEJA </span>
+
+  <ion-icon class="funnel" color="background" name="ios-funnel"></ion-icon>
+
+
+</div>
+ <div>
+      <ion-searchbar color="accent" autofocus [debounce]="600" placeholder="Procurar por cerveja">
+      </ion-searchbar>
+    </div>
+
+ <ion-content>
+    <ion-list no-lines >
+     
+ <button class="padding-util"  ion-item detail-none >
+   
+   <span class="itens-side-nav">  teste</span>
+</button>
+
+    </ion-list>
+  </ion-content>
+

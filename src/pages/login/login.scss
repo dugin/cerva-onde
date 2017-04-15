@@ -1,0 +1,36 @@
+page-login {
+
+    .scroll-content {
+        background-color: color($colors, primary);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        align-items: center;
+    }
+    .skip {
+        align-self: flex-end;
+        text-decoration: underline;
+        padding-right: 10px;
+        margin-top: -2px;
+        font-size: 12px;
+    }
+    .social-btn {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        justify-content: flex-end;
+        margin-bottom: 15%
+    }
+    .logo {
+        position: relative;
+        height: auto;
+        width: 60%;
+        margin: 15% auto;
+    }
+    .or {
+        margin: 15% auto;
+        align-self: center;
+        color: color($colors, background)
+    }
+    
+}

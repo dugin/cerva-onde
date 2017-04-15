@@ -1,0 +1,65 @@
+.toolbar {
+    background-color: color($colors, primary);
+    height: 56px;
+}
+
+.toolbar-ios {
+    padding-top: calc(20px + 4px);
+    min-height: calc(44px + 20px);
+}
+
+.header-ios .toolbar-background-ios,
+.footer-ios .toolbar-background-ios {
+    border-bottom: 0.55px solid color($colors, primary);
+}
+
+ion-card {
+    background-color: color($colors, background_2) !important;
+}
+
+.tabs-ios .tabbar {
+    border-top: 0.55px solid color($colors, primary);
+}
+
+.title-side-nav {
+    padding-left: 10px;
+    font-weight: 800;
+    font-size: 18px;
+    color: white;
+}
+
+.toolbar-ios ion-title {
+    padding: 0;
+}
+
+ion-searchbar {
+    background-color: white !important;
+}
+
+.searchbar-md {
+    padding: 0 0 1px 0;
+}
+
+.itens-side-nav {
+    font-size: 16px;
+    font-weight: 500;
+    color: color($colors, primary);
+}
+
+.line {
+    background-color: color($colors, line) !important;
+    height: 2px !important;
+    width: 30%;
+}
+
+.searching {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-self: center;
+    div {
+        margin-bottom: 10px;
+    }
+}

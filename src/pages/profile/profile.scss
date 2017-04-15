@@ -1,0 +1,85 @@
+page-profile {
+    .top-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 50%;
+        background:url('../assets/beer-glasses.jpeg') no-repeat center;
+        background-size: cover;
+        align-items: center;
+        .img-avt {
+            border-radius: 50%;
+            height: 80px;
+            width: 80px;
+            background-color: white;
+             z-index: 1;
+        }
+
+          .layer {
+      background: radial-gradient(rgba(78,22,0,0.3),rgba(78,22,0,0.4),rgba(78,22,0,0.6),rgba(78,22,0,0.6),rgba(78,22,0,0.8));
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      z-index: 0;
+    }
+
+    span{
+        color: white;
+        z-index: 1;
+    }
+
+   
+    }
+    h4 {
+        margin: 0;
+        padding: 10px;
+        background-color: color($colors, background_2);
+        font-size: 17px;
+    }
+
+    .list-ios, .list-md{
+        margin-bottom: 0;
+    }
+    .label-ios,
+    .label-md {
+        margin-left: 20px;
+         font-size: 14px;
+    }
+    .item-ios ion-avatar[item-left],
+    .item-ios ion-thumbnail[item-left],
+    .item-md ion-avatar[item-left],
+    .item-md ion-thumbnail[item-left] {
+        margin: 8px 16px 8px 20px;
+    }
+    .favourite-container {}
+    .activity-container {}
+    .activity-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .div-content{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: 0;
+        }
+        h5 {
+            font-size: 17px;
+        }
+        ion-icon{
+            align-self: center;
+            font-size: 2.5rem;
+        }
+        div{
+            margin-top: 5px;
+            font-size: 13px;
+        }
+        span {
+             margin-top: 5px;
+            font-size: 12px;
+        }
+    }
+}
