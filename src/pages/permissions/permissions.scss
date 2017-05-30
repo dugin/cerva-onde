@@ -2,6 +2,12 @@ page-permissions {
     ion-content {
         background-color: color($colors, primary) !important;
     }
+
+  .scroll-content{
+    overflow-y: hidden;
+
+
+  }
     .logo {
         position: relative;
         height: auto;
@@ -41,7 +47,7 @@ page-permissions {
                 font-size: 1.5rem;
             }
             div:last-of-type {
-                margin-top: 15px; 
+                margin-top: 15px;
                  font-size: 1.3rem;
             }
         }

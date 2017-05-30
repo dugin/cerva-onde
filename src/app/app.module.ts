@@ -25,15 +25,19 @@ import {NearbyBarsPage} from './../pages/nearby/nearby-bars.page';
 import {BarDetailPage} from './../pages/bar-detail/bar-detail';
 import {SuggestPage} from './../pages/suggest/suggest';
 import {LoginPage} from './../pages/login/login';
-import {PermissionsPage} from './../pages/permissions/permissions';
+import {PermissionsPage} from '../pages/permissions/permissions';
 import {SuggestBeerPage} from './../pages/suggest-beer/suggest-beer';
 import {Geolocation} from '@ionic-native/geolocation';
+import { Diagnostic } from '@ionic-native/diagnostic';
 
 
 import {MyApp} from './app.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpModule} from '@angular/http';
 import {LocationService} from "../providers/location.service";
+import { FacebookService} from '../providers/facebook.service';
+import {Facebook} from '@ionic-native/facebook';
+import {DiagnosticService} from '../providers/diagnostic.service';
 // Must export the config
 export const firebaseConfig = {
   apiKey: 'AIzaSyCus43rxj_lqCKqk1jYPKDCvce28XGVlEU',
@@ -87,7 +91,8 @@ export const firebaseConfig = {
     PermissionsPage,
     SuggestBeerPage
   ],
-  providers: [BarsService,
+  providers: [
+    BarsService,
     NearbyBarsService,
     BeersService,
     GeocoderService,
@@ -98,7 +103,12 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     Geolocation,
-    LocationService
+    LocationService,
+    Diagnostic,
+    FacebookService,
+    Facebook,
+    DiagnosticService
+
   ],
 })
 export class AppModule {

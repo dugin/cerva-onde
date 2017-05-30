@@ -4,7 +4,7 @@ import {BarModel} from './../model/bar';
 import {Injectable, Inject} from '@angular/core';
 import {Http} from '@angular/http';
 import 'rxjs/add/operator/map';
-import {AngularFire, FirebaseApp, FirebaseListObservable} from 'angularfire2';
+import {AngularFire, AuthMethods, AuthProviders, FirebaseApp, FirebaseListObservable} from 'angularfire2';
 import * as firebase from 'firebase';
 import {BeersBarModel} from "../model/beers-bar";
 import {BeersBarLogModel} from "../model/beers-bar-log";
@@ -27,10 +27,79 @@ export class FirebaseService {
 
 
   constructor(public af: AngularFire,
-              @Inject(FirebaseApp) public firebaseApp:any) {
+              @Inject(FirebaseApp) public firebaseApp: any) {
     console.log('Hello Firebase Provider');
 
     this.getBeerFromBar = this.getBeerFromBar.bind(this);
+  }
+
+
+  logOut() {
+    return  this.firebaseApp.auth().signOut();
+  }
+
+  getLoggedUser() {
+
+    return new Observable<any>((observer) => {
+
+      this.firebaseApp.auth().onAuthStateChanged(next => {
+          observer.next(next);
+        }, (error) => {
+          observer.error(error);
+        },
+        () => {
+          observer.complete();
+        });
+
+
+    })
+
+  }
+
+  getUser(id) {
+
+    return this.af.database.object('users/' + id);
+
+  }
+
+  loginWithFacebook(fbResponse) {
+
+    return new Observable<any>((observer) => {
+
+      const provider = firebase.auth.FacebookAuthProvider.credential(fbResponse.authResponse.accessToken);
+
+      this.firebaseApp.auth().signInWithCredential(provider)
+        .then((resolve) => {
+
+          observer.next(resolve);
+          observer.complete();
+
+        })
+        .catch((err) => {
+          console.error(err);
+          observer.error(err);
+        });
+    });
+  }
+
+  pushUser(user, id) {
+
+    return new Observable<any>((observer) => {
+
+      this.af.database.object('users/' + id)
+        .set(user)
+        .then(() => {
+          observer.next(user);
+          observer.complete();
+        })
+        .catch((err) => {
+          console.error(err);
+          observer.error(err);
+        });
+
+
+    });
+
   }
 
 

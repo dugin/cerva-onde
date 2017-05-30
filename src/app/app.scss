@@ -1,12 +1,12 @@
-.toolbar {
-    background-color: color($colors, primary);
-    height: 56px;
-}
-
-.toolbar-ios {
-    padding-top: calc(20px + 4px);
-    min-height: calc(44px + 20px);
-}
+//.toolbar {
+//    background-color: color($colors, primary);
+//    height: 56px;
+//}
+//
+//.toolbar-ios {
+//    padding-top: calc(20px + 4px);
+//    min-height: calc(44px + 20px);
+//}
 
 .header-ios .toolbar-background-ios,
 .footer-ios .toolbar-background-ios {
@@ -28,6 +28,13 @@ ion-card {
     color: white;
 }
 
+//.itens-side-nav {
+//    font-size: 16px;
+//    font-weight: 500;
+//    color: color($colors, primary);
+//}
+
+
 .toolbar-ios ion-title {
     padding: 0;
 }
@@ -40,11 +47,6 @@ ion-searchbar {
     padding: 0 0 1px 0;
 }
 
-.itens-side-nav {
-    font-size: 16px;
-    font-weight: 500;
-    color: color($colors, primary);
-}
 
 .line {
     background-color: color($colors, line) !important;

@@ -1,47 +1,49 @@
-import { BarModel } from './../../model/bar';
-import { BarsService } from './bars.service';
-import { BarDetailPage } from './../bar-detail/bar-detail';
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {BarModel} from './../../model/bar';
+import {BarsService} from './bars.service';
+import {BarDetailPage} from './../bar-detail/bar-detail';
+import {Component} from '@angular/core';
+import {NavController} from 'ionic-angular';
+import {StatusBar} from "@ionic-native/status-bar";
 
 @Component({
-    selector: 'ib-page-bars',
-    templateUrl: 'bars.page.html',
+  selector: 'ib-page-bars',
+  templateUrl: 'bars.page.html',
 })
 export class BarsPage {
 
-    isLoading = true;
-    bars = new Array<BarModel>()
+  isLoading = true;
+  bars = new Array<BarModel>()
 
-    constructor(public navCtrl: NavController,
-        public barsService: BarsService
+  constructor(public navCtrl: NavController,
+              public barsService: BarsService,
+              statusBar: StatusBar) {
 
-    ) {
-    }
-
-
-    ionViewDidLoad() {
-
-        this.barsService.getMyLatLng()
-          .mergeMap((latLng)=> this.barsService.getBars(latLng, 50))
-          .subscribe(data => {
-            this.setIsLoading();
-            this.bars = data;
-
-          })
-
-    }
-
-    roundDistance(distance: number) {
-        return Math.round(distance * 100) / 100
-    }
+    statusBar.backgroundColorByHexString('#cccccc');
+  }
 
 
-    onCard(bar: BarModel) {
-                this.navCtrl.push(BarDetailPage, { bar: bar });
-    }
+  ionViewDidLoad() {
 
-    setIsLoading() {
-        this.isLoading = !this.isLoading;
-    }
+    this.barsService.getMyLocationInfo()
+      .mergeMap((location) => this.barsService.getBars(location.latLng, 50))
+      .subscribe(data => {
+        this.setIsLoading();
+        this.bars = data;
+
+      })
+
+  }
+
+  roundDistance(distance: number) {
+    return Math.round(distance * 100) / 100
+  }
+
+
+  onCard(bar: BarModel) {
+    this.navCtrl.push(BarDetailPage, {bar: bar});
+  }
+
+  setIsLoading() {
+    this.isLoading = !this.isLoading;
+  }
 }

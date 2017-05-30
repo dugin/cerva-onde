@@ -1,6 +1,7 @@
 import { TabsPage } from './../tabs/tabs.page';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import {StatusBar} from "@ionic-native/status-bar";
 
 /*
   Generated class for the Permissions page.
@@ -14,7 +15,12 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class PermissionsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              statusBar: StatusBar ) {
+
+    statusBar.backgroundColorByHexString('#4E1600');
+
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PermissionsPage');

@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Observer } from 'rxjs/Observer';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {Observer} from 'rxjs/Observer';
+import {Observable} from 'rxjs/Observable';
 
-@Injectable() export class GeocoderService {
+@Injectable()
+export class GeocoderService {
 
-  
 
   /**
    * Geocoder.
@@ -19,18 +19,18 @@ import { Observable } from 'rxjs/Observable';
 
   /**
    * Reverse geocoding by location.
-   * 
+   *
    * Wraps the Google Maps API geocoding service into an observable.
-   * 
+   *
    * @param latLng Location
    * @return An observable of GeocoderResult
    */
-  geocode(latLng: google.maps.LatLng): Observable<google.maps.GeocoderResult[]> {
+  geocode(latLng: number[]): Observable<google.maps.GeocoderResult[]> {
 
     return new Observable<google.maps.GeocoderResult[]>((observer: Observer<google.maps.GeocoderResult[]>) => {
 
       // Invokes geocode method of Google Maps API geocoding.
-      this.geocoder.geocode({ location: latLng }, (
+      this.geocoder.geocode({location: {lat: latLng[0], lng: latLng[1]}}, (
 
         // Results & status.
         (results: google.maps.GeocoderResult[], status: google.maps.GeocoderStatus) => {
@@ -49,7 +49,6 @@ import { Observable } from 'rxjs/Observable';
           }
 
         })
-
       );
 
     });
@@ -58,9 +57,9 @@ import { Observable } from 'rxjs/Observable';
 
   /**
    * Geocoding services.
-   * 
+   *
    * Wraps the Google Maps API geocoding service into an observable.
-   * 
+   *
    * @param address The address to be searched
    * @return An observable of GeocoderResult
    */
@@ -69,7 +68,7 @@ import { Observable } from 'rxjs/Observable';
     return new Observable<google.maps.GeocoderResult[]>((observer: Observer<google.maps.GeocoderResult[]>) => {
 
       // Invokes geocode method of Google Maps API geocoding.
-      this.geocoder.geocode({ address: address }, (
+      this.geocoder.geocode({address: address}, (
 
         // Results & status.
         (results: google.maps.GeocoderResult[], status: google.maps.GeocoderStatus) => {
@@ -88,7 +87,6 @@ import { Observable } from 'rxjs/Observable';
           }
 
         })
-
       );
 
     });

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1036657416571",
+    "firebase_url": "https://cervaonde-c97ab.firebaseio.com",
+    "project_id": "cervaonde-c97ab",
+    "storage_bucket": "cervaonde-c97ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1036657416571:android:f2b273f550ad15fb",
+        "android_client_info": {
+          "package_name": "com.Menaze.Cervaonde"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1036657416571-vn7gtk28pap4jmc3m2ords01te6v2l11.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_tLrr540WqXj1nDR-h6Insl1ZsfytYFg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

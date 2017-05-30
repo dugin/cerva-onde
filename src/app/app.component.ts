@@ -4,6 +4,13 @@ import {Platform} from 'ionic-angular';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
 import {PermissionsPage} from "../pages/permissions/permissions";
+import {Diagnostic} from "@ionic-native/diagnostic";
+import {LoginPage} from '../pages/login/login';
+import {FirebaseService} from '../providers/firebase.service';
+import {FacebookService} from '../providers/facebook.service';
+import {mergeMap} from 'rxjs/operator/mergeMap';
+import {Observable} from 'rxjs';
+import {DiagnosticService} from '../providers/diagnostic.service';
 
 @Component({
   template: `
@@ -16,18 +23,48 @@ import {PermissionsPage} from "../pages/permissions/permissions";
     <ion-nav #content [root]="rootPage"></ion-nav>`,
 })
 export class MyApp {
-  rootPage = PermissionsPage;
+  rootPage;
 
   constructor(platform: Platform,
               statusBar: StatusBar,
-              private splashScreen: SplashScreen) {
+              private splashScreen: SplashScreen,
+              private diagnosticService: DiagnosticService,
+              private facebookService: FacebookService,) {
+
     platform.ready().then(() => {
+
+
+      const subs = facebookService.isLoggedIn()
+        .mergeMap((data) => {
+
+        if (data.status.localeCompare('unknown') === 0) {
+          this.rootPage = LoginPage;
+          return Observable.empty();
+
+        } else {
+          return this.diagnosticService.locationEnabled()
+        }
+
+      })
+        .subscribe((data: boolean | null) => {
+
+          if (typeof data === 'boolean' )
+            if(data)
+              this.rootPage = TabsPage;
+          else
+              this.rootPage = PermissionsPage;
+
+          subs.unsubscribe();
+
+        });
 
 
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       this.hideSplashScreen();
+
+
     });
   }
 
@@ -37,7 +74,7 @@ export class MyApp {
       setTimeout(() => {
         // alert("Vou esconder Splashscreen");
         this.splashScreen.hide();
-      }, 1500);
+      }, 1000);
     }
   }
 }

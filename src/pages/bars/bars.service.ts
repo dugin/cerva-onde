@@ -53,9 +53,9 @@ export class BarsService {
 
     }
 
-    getMyLatLng(){
+    getMyLocationInfo(){
 
-      return this.locationService.getMyLatLon();
+      return this.locationService.getMyLocation();
 
     }
 }
