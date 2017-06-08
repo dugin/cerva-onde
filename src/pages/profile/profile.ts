@@ -1,8 +1,10 @@
 import {Component, NgZone} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {AlertController, NavController, NavParams, Platform} from 'ionic-angular';
 import {FacebookService} from '../../providers/facebook.service';
 import {FirebaseService} from '../../providers/firebase.service';
 import {Observable} from 'rxjs';
+import {EmailComposer} from '@ionic-native/email-composer';
+import {AppRate} from '@ionic-native/app-rate';
 
 /*
  Generated class for the Profile page.
@@ -19,23 +21,74 @@ export class ProfilePage {
   user;
   isLoggedIn = false;
   isLoading = true;
+  isIOS;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public facebookService: FacebookService,
               private firebaseService: FirebaseService,
-              private ngZone: NgZone) {
+              private ngZone: NgZone,
+              private platform: Platform,
+              private emailComposer: EmailComposer,
+              private appRate: AppRate,
+              private alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
 
+    this.emailComposer.isAvailable().then((available: boolean) => {
+      console.log('emailComposer', available);
+
+    });
+
+    this.appRate.preferences = {
+      storeAppURL: {
+        ios: '781987951',
+        android: 'market://details?id=com.Menaze.Cervaonde',
+      },
+      useLanguage: 'pt-br',
+      displayAppName: 'Cervaonde'
+    };
 
 
-      this.getUser();
+    this.isIOS = this.platform.is('ios');
 
+    this.getUser();
 
 
     console.log('ionViewDidLoad ProfilePage');
+  }
+
+  talkToUs() {
+    console.log('talkToUs');
+
+    const email = {
+      to: 'cervaonde@gmail.com',
+      subject: 'Fale Conosco',
+      body: ` Enviado através do app Cervaonde - ${this.isIOS ? 'IOS' : 'Android'}`,
+      isHtml: true
+    };
+
+    this.emailComposer.open(email);
+
+  }
+
+  rateApp() {
+
+    this.appRate.promptForRating(true);
+  }
+
+  reportProblem() {
+    console.log('reportProblem');
+    const email = {
+      to: 'cervaonde@gmail.com',
+      subject: 'Relatar um problema',
+      body: ` Enviado através do app Cervaonde - ${this.isIOS ? 'IOS' : 'Android'}`,
+      isHtml: true
+    };
+
+    this.emailComposer.open(email);
+
   }
 
   getUser() {
@@ -70,9 +123,9 @@ export class ProfilePage {
 
   }
 
-  onLoginWithFacebook(){
+  onLoginWithFacebook() {
     this.facebookService.onLogin()
-      .subscribe(user=>{
+      .subscribe(user => {
         console.log(user);
       })
   }
@@ -80,12 +133,35 @@ export class ProfilePage {
 
   onLogOut() {
 
-    this.facebookService.logOut()
-      .mergeMap(() => Observable.fromPromise(this.firebaseService.logOut()))
-      .subscribe(success => {
-        console.log('logOut: '+ success);
-
-      })
+    this.promptLogOut();
   }
+
+  private promptLogOut() {
+
+    const alert = this.alertCtrl.create({
+      title: 'Sair',
+      message: 'Tem certeza que deseja sair do Facebook?',
+      buttons: [
+        {
+          text: 'Não',
+          role: 'cancel',
+        },
+        {
+          text: 'Sim',
+          handler: () => {
+            this.facebookService.logOut()
+              .mergeMap(() => Observable.fromPromise(this.firebaseService.logOut()))
+              .subscribe(success => {
+                console.log('logOut: ' + success);
+
+              })
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+
 
 }

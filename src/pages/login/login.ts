@@ -19,7 +19,8 @@ import {UserModel} from '../../model/user';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
               private facebookService: FacebookService,
               private diagnosticService: DiagnosticService) {
   }
@@ -29,7 +30,14 @@ export class LoginPage {
   }
 
   onSkip() {
-    this.navCtrl.setRoot(PermissionsPage);
+    this.diagnosticService.locationEnabled()
+      .subscribe(data => {
+
+        if (typeof data === 'boolean')
+          this.navCtrl.setRoot(data ? TabsPage : PermissionsPage);
+
+
+      })
   }
 
   onLoginWithFacebook() {
@@ -39,14 +47,12 @@ export class LoginPage {
       .subscribe(data => {
 
         if (typeof data === 'boolean')
-          if (data)
-            this.navCtrl.setRoot(TabsPage);
-          else
-            this.navCtrl.setRoot(PermissionsPage);
+          this.navCtrl.setRoot(data ? TabsPage : PermissionsPage);
 
 
       })
 
   }
+
 
 }

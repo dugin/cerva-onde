@@ -18,7 +18,7 @@ export class PermissionsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
               statusBar: StatusBar ) {
 
-    statusBar.backgroundColorByHexString('#4E1600');
+    statusBar.backgroundColorByHexString('#683027');
 
   }
 

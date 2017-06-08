@@ -2,7 +2,9 @@
 import {NgModule} from '@angular/core';
 import {IonicApp, IonicModule} from 'ionic-angular';
 import {AngularFireModule} from 'angularfire2';
+import { EmailComposer } from '@ionic-native/email-composer';
 
+import { AppRate } from '@ionic-native/app-rate';
 
 // SERVICES
 import {BarsService} from './../pages/bars/bars.service';
@@ -38,6 +40,7 @@ import {LocationService} from "../providers/location.service";
 import { FacebookService} from '../providers/facebook.service';
 import {Facebook} from '@ionic-native/facebook';
 import {DiagnosticService} from '../providers/diagnostic.service';
+import {InAppBrowser} from '@ionic-native/in-app-browser';
 // Must export the config
 export const firebaseConfig = {
   apiKey: 'AIzaSyCus43rxj_lqCKqk1jYPKDCvce28XGVlEU',
@@ -107,7 +110,10 @@ export const firebaseConfig = {
     Diagnostic,
     FacebookService,
     Facebook,
-    DiagnosticService
+    DiagnosticService,
+    EmailComposer,
+    AppRate,
+    InAppBrowser
 
   ],
 })

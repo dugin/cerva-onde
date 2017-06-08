@@ -47,15 +47,18 @@ page-suggest-beer {
     }
 
 
+  .line{
+    margin: 20px 0 0 -10px ;
+    background-color: color($colors, line) !important;
+    height: 1px !important;
+    width: calc(100% + 20px);
+  }
+
 .label-size{
         margin: 13px 8px 8px 0;
         color: color($colors, primary) !important;
     }
 
-    .line{
-        margin: 25px auto 0 auto;
-        width: 50%;
-    }
 
 
     .btn-register-container{

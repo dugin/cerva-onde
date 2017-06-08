@@ -14,8 +14,8 @@
 
 
 <ion-content>
-
-    <form *ngIf="!isLoading && isLoggedIn">
+  <!--*ngIf="isLoggedIn"-->
+    <form >
 
         <ion-grid>
             <ion-row style="margin-top: -10px">
@@ -103,12 +103,12 @@
     </form>
 
 
-    <div *ngIf="!isLoading && !isLoggedIn" class="not-logged">
-      <p>Precisamos que você faça o login para poder cadastrar um bar!</p>
-      <button (click)="onLoginWithFacebook()" class="facebook-btn" color="primary" ion-button icon-left>
-        <ion-icon name="logo-facebook"></ion-icon>
-        Login com o Facebook
-      </button>
-    </div>
+    <!--<div *ngIf="!isLoggedIn" class="not-logged">-->
+      <!--<p>Precisamos que você faça o login para poder cadastrar um bar!</p>-->
+      <!--<button (click)="onLoginWithFacebook()" class="facebook-btn" color="primary" ion-button icon-left>-->
+        <!--<ion-icon name="logo-facebook"></ion-icon>-->
+        <!--Login com o Facebook-->
+      <!--</button>-->
+    <!--</div>-->
 
 </ion-content>

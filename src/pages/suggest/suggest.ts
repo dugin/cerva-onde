@@ -60,9 +60,6 @@ export class SuggestPage {
           else
             this.isLoggedIn = false;
 
-          this.isLoading = false;
-
-
         })
       })
   }
