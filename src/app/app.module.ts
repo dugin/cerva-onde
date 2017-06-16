@@ -2,9 +2,9 @@
 import {NgModule} from '@angular/core';
 import {IonicApp, IonicModule} from 'ionic-angular';
 import {AngularFireModule} from 'angularfire2';
-import { EmailComposer } from '@ionic-native/email-composer';
+import {EmailComposer} from '@ionic-native/email-composer';
 
-import { AppRate } from '@ionic-native/app-rate';
+import {AppRate} from '@ionic-native/app-rate';
 
 // SERVICES
 import {BarsService} from './../pages/bars/bars.service';
@@ -30,17 +30,20 @@ import {LoginPage} from './../pages/login/login';
 import {PermissionsPage} from '../pages/permissions/permissions';
 import {SuggestBeerPage} from './../pages/suggest-beer/suggest-beer';
 import {Geolocation} from '@ionic-native/geolocation';
-import { Diagnostic } from '@ionic-native/diagnostic';
+import {Diagnostic} from '@ionic-native/diagnostic';
 
 
 import {MyApp} from './app.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpModule} from '@angular/http';
 import {LocationService} from "../providers/location.service";
-import { FacebookService} from '../providers/facebook.service';
+import {FacebookService} from '../providers/facebook.service';
 import {Facebook} from '@ionic-native/facebook';
 import {DiagnosticService} from '../providers/diagnostic.service';
 import {InAppBrowser} from '@ionic-native/in-app-browser';
+import {Firebase} from '@ionic-native/firebase';
+import {Keyboard} from '@ionic-native/keyboard';
+import {EmptyBeerPipe} from '../pipes/empty-beer.pipe';
 // Must export the config
 export const firebaseConfig = {
   apiKey: 'AIzaSyCus43rxj_lqCKqk1jYPKDCvce28XGVlEU',
@@ -50,6 +53,14 @@ export const firebaseConfig = {
   messagingSenderId: '1036657416571'
 };
 
+export const firebaseConfigDEV = {
+  apiKey: "AIzaSyCqwrsPcHUiWJcAD6IlndhPAv90jFIefEg",
+  authDomain: "cervaonde-dev.firebaseapp.com",
+  databaseURL: "https://cervaonde-dev.firebaseio.com",
+  projectId: "cervaonde-dev",
+  storageBucket: "cervaonde-dev.appspot.com",
+  messagingSenderId: "433228311523"
+};
 
 @NgModule({
   declarations: [
@@ -63,14 +74,14 @@ export const firebaseConfig = {
     SuggestPage,
     LoginPage,
     PermissionsPage,
-    SuggestBeerPage
+    SuggestBeerPage,
+    EmptyBeerPipe
   ],
   imports: [
-    AngularFireModule.initializeApp(firebaseConfig),
+    //TODO  mudar config do firebase ao subir para produção!!
+    AngularFireModule.initializeApp(firebaseConfigDEV),
     BrowserModule,
     HttpModule,
-
-
     IonicModule.forRoot(MyApp, {
       menuType: 'overlay',
       platforms: {
@@ -113,7 +124,10 @@ export const firebaseConfig = {
     DiagnosticService,
     EmailComposer,
     AppRate,
-    InAppBrowser
+    InAppBrowser,
+    Firebase,
+    Keyboard
+
 
   ],
 })

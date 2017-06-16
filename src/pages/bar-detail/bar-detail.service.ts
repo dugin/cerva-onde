@@ -22,7 +22,7 @@ export class BarDetailService {
 
     return new Observable<any[]>((observer: Observer<any>) => {
 
-      const beers: any[] = [];      
+      const beers: any[] = [];
      const subs =  Observable.from(id)
         .mergeMap(this.firebaseService.getBeerFromBar)
         .finally(() => {
@@ -33,9 +33,7 @@ export class BarDetailService {
           observer.complete()
         })
         .subscribe((data) => {
-        
           beers.push(data);
-
           if(id.length == beers.length)
             subs.unsubscribe()
         },

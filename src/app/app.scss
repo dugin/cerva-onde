@@ -8,6 +8,15 @@
 //    min-height: calc(44px + 20px);
 //}
 
+  //padding do titulo no ios
+[dir="ltr"] .toolbar-ios ion-title, [dir="rtl"] .toolbar-ios ion-title {
+   padding: 0 20px 1px ;
+ }
+
+  // back button text
+.back-button-text-ios{
+  display: none !important;
+}
 .header-ios .toolbar-background-ios,
 .footer-ios .toolbar-background-ios {
     border-bottom: 0.55px solid color($colors, primary);
@@ -65,3 +74,4 @@ ion-searchbar {
         margin-bottom: 10px;
     }
 }
+

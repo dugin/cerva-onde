@@ -5,6 +5,7 @@ import {FirebaseService} from '../../providers/firebase.service';
 import {Observable} from 'rxjs';
 import {EmailComposer} from '@ionic-native/email-composer';
 import {AppRate} from '@ionic-native/app-rate';
+import {Firebase} from '@ionic-native/firebase';
 
 /*
  Generated class for the Profile page.
@@ -31,10 +32,13 @@ export class ProfilePage {
               private platform: Platform,
               private emailComposer: EmailComposer,
               private appRate: AppRate,
-              private alertCtrl: AlertController) {
+              private alertCtrl: AlertController,
+              private firebase: Firebase) {
   }
 
   ionViewDidLoad() {
+
+    this.firebase.setScreenName('Profile');
 
     this.emailComposer.isAvailable().then((available: boolean) => {
       console.log('emailComposer', available);
@@ -94,32 +98,20 @@ export class ProfilePage {
   getUser() {
 
     this.firebaseService.getLoggedUser()
-      .mergeMap((value, index) => {
-
-        console.log('getLoggedUser', value);
-
-        if (value)
-          return this.firebaseService.getUser(value.uid)
-
-        return Observable.of(null);
-
-      })
       .subscribe(user => {
 
-        this.ngZone.run(() => {
+        console.log('getLoggedUser', user);
 
-          if (user)
-            this.isLoggedIn = true;
+        if (user)
+          this.isLoggedIn = true;
 
-          else
-            this.isLoggedIn = false;
+        else
+          this.isLoggedIn = false;
 
-          this.isLoading = false;
-          this.user = user;
+        this.isLoading = false;
+        this.user = user;
 
-        })
       })
-
 
   }
 
@@ -161,7 +153,6 @@ export class ProfilePage {
     });
     alert.present();
   }
-
 
 
 }

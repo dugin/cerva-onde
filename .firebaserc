@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "cervaonde-c97ab",
+    "dev": "cervaonde-dev"
+  }
+}

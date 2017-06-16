@@ -4,6 +4,7 @@ import {BarDetailPage} from './../bar-detail/bar-detail';
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {StatusBar} from "@ionic-native/status-bar";
+import {Firebase} from '@ionic-native/firebase';
 
 @Component({
   selector: 'ib-page-bars',
@@ -16,7 +17,9 @@ export class BarsPage {
 
   constructor(public navCtrl: NavController,
               public barsService: BarsService,
-              statusBar: StatusBar) {
+              statusBar: StatusBar,
+              private firebase: Firebase
+  ) {
 
     statusBar.backgroundColorByHexString('#cccccc');
   }
@@ -24,8 +27,12 @@ export class BarsPage {
 
   ionViewDidLoad() {
 
+    console.log('ionViewDidLoad');
+
+    this.firebase.setScreenName('Bar List');
+
     this.barsService.getMyLocationInfo()
-      .mergeMap((location) => this.barsService.getBars(location.latLng, 50))
+      .mergeMap((location) => this.barsService.getBars(location.latLng, 5000))
       .subscribe(data => {
         this.setIsLoading();
         this.bars = data;

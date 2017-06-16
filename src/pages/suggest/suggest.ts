@@ -8,6 +8,8 @@ import 'rxjs';
 import {LocationService} from "../../providers/location.service";
 import {FirebaseService} from '../../providers/firebase.service';
 import {FacebookService} from '../../providers/facebook.service';
+import {Firebase} from '@ionic-native/firebase';
+import { Keyboard } from '@ionic-native/keyboard';
 
 /*
  Generated class for the Suggest page.
@@ -28,23 +30,31 @@ export class SuggestPage {
   errorMsg = '';
   isLoggedIn = true;
 
+  userUID: string;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public suggestService: SuggestService,
               public ngZone: NgZone,
               private firebaseService: FirebaseService,
-              public facebookService: FacebookService) {
+              public facebookService: FacebookService,
+              private firebase: Firebase,
+              private keyboard: Keyboard) {
   }
 
   ionViewDidLoad() {
+
+    this.firebase.setScreenName('Bar Register 1');
     console.log('ionViewDidLoad SuggestPage');
   }
 
   ionViewWillEnter() {
+    this.logged();
     this.bar.address.neighborhood = LocationService.myLocation.neighborhood;
     this.bar.address.city = LocationService.myLocation.city;
 
-    this.logged();
+    if(this.isBarFound)
+    this.onClean();
 
   }
 
@@ -54,8 +64,12 @@ export class SuggestPage {
       .subscribe(isLogged => {
         this.ngZone.run(() => {
 
-          if (isLogged)
+          console.log('logged', isLogged);
+
+          if (isLogged) {
+            this.userUID = isLogged.uid;
             this.isLoggedIn = true;
+          }
 
           else
             this.isLoggedIn = false;
@@ -78,7 +92,7 @@ export class SuggestPage {
       this.getBar();
 
     } else if (this.isBarFound)
-      this.navCtrl.push(SuggestBeerPage, {bar: this.bar});
+      this.navCtrl.push(SuggestBeerPage, {bar: this.bar, userUID: this.userUID});
 
 
   }
@@ -97,6 +111,7 @@ export class SuggestPage {
 
             this.bar = bar;
             this.addr = bar.address.street + ', ' + bar.address.number;
+            this.keyboard.close();
 
           });
 

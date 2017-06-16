@@ -20,6 +20,7 @@ export class BarModel {
     public rating: number;
     public distance?: number;
     public id?: string;
+    public type?: number
 
 
 
@@ -39,6 +40,7 @@ export class BarModel {
         isDenounced?: boolean,
         menuImg?: string,
         rating?: number,
+        type?: number
 
 
     ) {
@@ -57,5 +59,6 @@ export class BarModel {
         this.rating = rating || null;
         this.distance = distance || null;
         this.id = id || null;
+        this.type = type || null;
     }
 }

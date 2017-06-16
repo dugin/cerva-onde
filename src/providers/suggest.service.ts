@@ -9,6 +9,7 @@ import {BeerModel} from "../model/beer";
 import {BeersBarModel} from "../model/beers-bar";
 import * as moment from 'moment';
 import {BeersBarLogModel} from "../model/beers-bar-log";
+import {BeerTempModel} from '../model/beerTemp';
 /*
  Generated class for the Suggest provider.
 
@@ -93,33 +94,63 @@ export class SuggestService {
       })
   }
 
-  pushBarToFirebase(bar: BarModel, beers: BeersBarModel[]) {
+  pushBarToFirebase(bar: BarModel, beers: BeersBarModel[], beersTemp: BeerTempModel[]) {
 
     bar.createdAt = moment().toJSON();
+    let i = -1;
+    let j = -1;
+    let z = -1;
+
+    console.log('beersTemp ', beersTemp);
+
+
 
     return this.firebaseService.pushBar(bar)
       .map((data) => {
         this.firebaseService.barKey = data.path.o[1];
-        this.setBarKeyToBeer(beers);
+        this.setBarKeyToBeer(beers, beersTemp);
 
       })
+      .mergeMap(() => this.firebaseService.pushUsersLog(0, bar.userID, this.firebaseService.barKey, bar.name))
       .mergeMap(() => this.firebaseService.setGeofire(bar.address.coordinates))
       .mergeMap(() => this.firebaseService.pushBeersBar(beers))
       .map((data) => {
-      console.log(data)
+        console.log(data);
+        i++;
         this.firebaseService.beerKey = data.path.o[1];
-        (bar.beers as string[]).push(data.path.o[1]);
-      })
-      .mergeMap(() => this.firebaseService.pushBeersBarLog(new BeersBarLogModel()))
-      .mergeMap(() => this.firebaseService.updateBar(bar.beers))
 
+        (bar.beers as string[]).push(data.path.o[1]);
+
+        return beers[i].price;
+      })
+      .mergeMap(() => {
+
+        console.log(i);
+        console.log(beersTemp.length);
+        if (beers[i].beer.id.length == 0) {
+          z++;
+          beersTemp[z].beersBarID = this.firebaseService.beerKey;
+
+          return this.firebaseService.pushBeersTemp(beersTemp[z]);
+        }
+
+        return Observable.of('');
+      })
+      .mergeMap(() => this.firebaseService.pushBeersBarLog(new BeersBarLogModel(null, beers[i].price, bar.userID)))
+      .mergeMap(() => this.firebaseService.updateBar(bar.beers))
+      .do(() => j++)
+      .mergeMap(() => this.firebaseService.pushUsersLog(1, bar.userID, null, bar.name, bar.beers[j], beers[j].beer.name))
 
 
   }
 
-  private setBarKeyToBeer(beers: BeersBarModel[]) {
+  private setBarKeyToBeer(beers: BeersBarModel[], beersTemp: BeerTempModel[]) {
 
     beers.forEach(beer => {
+      beer.barID = this.firebaseService.barKey;
+    });
+
+    beersTemp.forEach(beer => {
       beer.barID = this.firebaseService.barKey;
     });
 

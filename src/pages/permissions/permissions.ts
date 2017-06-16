@@ -2,6 +2,7 @@ import { TabsPage } from './../tabs/tabs.page';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {StatusBar} from "@ionic-native/status-bar";
+import {Firebase} from '@ionic-native/firebase';
 
 /*
   Generated class for the Permissions page.
@@ -16,13 +17,16 @@ import {StatusBar} from "@ionic-native/status-bar";
 export class PermissionsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              statusBar: StatusBar ) {
+              statusBar: StatusBar,
+              private firebase: Firebase) {
 
     statusBar.backgroundColorByHexString('#683027');
 
   }
 
   ionViewDidLoad() {
+
+      this.firebase.setScreenName('Permissions');
     console.log('ionViewDidLoad PermissionsPage');
   }
 

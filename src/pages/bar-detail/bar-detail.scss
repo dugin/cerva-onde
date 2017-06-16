@@ -1,151 +1,162 @@
 page-bar-detail {
-    .header-image {
-        height: 30%;
-        .slide-image {
-            height: 30%;
-            width: 100%;
-        }
+  .header-image {
+    height: 30%;
+    .slide-image {
+      height: 30%;
+      width: 100%;
     }
-    .card-container {
-        z-index: 9;
-        position: relative;
-        margin-top: -50px;
+  }
+  .card-container {
+    z-index: 9;
+    position: relative;
+    margin-top: -50px !important;
+
+  }
+  span {
+    font-size: 14px;
+    color: color($colors, primary);
+    text-align: center;
+  }
+  .card-content {
+    text-align: center;
+    padding: 10px;
+    .distance {
+      padding-right: 5px;
+      font-weight: 800;
+      border-right: 1px solid color($colors, primary);
+    }
+    .street {
+      padding-left: 5px;
+    }
+    .tel {
+      @extend .distance;
+      font-weight: 500;
 
     }
-    span {
-        font-size: 14px;
-        color: color($colors, primary);
-        text-align: center;
+    .tel-number {
+      font-weight: 600;
+      padding-left: 5px;
     }
-    .card-content {
-        text-align: center;
-        padding: 10px;
-        .distance {
-            padding-right: 5px;
-            font-weight: 800;
-            border-right: 1px solid color($colors, primary);
-        }
-        .street {
-            padding-left: 5px;
-        }
-        .tel {
-            @extend .distance;
-            font-weight: 500;
-        }
-        .city {
-            margin-top: 3px
-        }
-        ion-grid {
-            margin-top: 10px;
-            padding: 0;
-            ion-col:first-of-type {
-                padding-left: 0;
-            }
-            ion-col:last-of-type {
-                padding: 5px 0;
-            }
-        }
-        .opening-hours {
-            margin-bottom: 5px;
-            span:first-of-type {
-                padding-right: 3px;
-                font-size: 13px;
-                border-right: 1px solid color($colors, primary);
-            }
-            span:last-of-type {
-                margin-left: 3px;
-                font-weight: 600;
-            }
-        }
+    .city {
+      margin-top: 3px
     }
-    .circle-icon {
-        background-color: color($colors, background_2);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 10;
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
-        top: -40px;
-        height: 60px;
-        width: 60px;
-        border-radius: 50%;
+    ion-grid {
+      margin-top: 10px !important;
+      padding: 0 !important;
+      ion-col:first-of-type {
+        padding-left: 0 !important;
+      }
+      ion-col:last-of-type {
+        padding: 5px 0 !important;
+      }
     }
-    .list-beers {
-        margin-top: 10px;
-        border: 1px solid color($colors, list_border);
-        padding: 0;
-        ion-item:nth-child(even) {
-            background-color: color($colors, list_item);
-        }
-        ion-item span:first-child {
-            width: 25%;
-        }
-        ion-item span:nth-child(2) {
-            max-width: 45%;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-        }
-        ion-item span:nth-child(n+2) {
-            font-weight: 700;
-        }
+    .opening-hours {
+      margin-bottom: 5px !important;
+      span:first-of-type {
+        padding-right: 3px !important;
+        font-size: 13px;
+        border-right: 1px solid color($colors, primary);
+      }
+      span:last-of-type {
+        margin-left: 3px !important;
+        font-weight: 600;
+      }
     }
-    .more-list-btn {
-        width: 110px;
-        position: relative;
-        margin-top: -6%;
-        background-color: white;
-        height: 35px;
+  }
+  .circle-icon {
+    background-color: color($colors, background_2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -40px;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+  }
+  .list-beers {
+    margin-top: 10px;
+    border: 1px solid color($colors, list_border);
+    padding: 0;
+    ion-item:nth-child(even) {
+      background-color: color($colors, list_item);
     }
-    .line {
-        height: 1px !important;
-        margin-top: 5px;
-        margin-bottom: 0;
-        width: 30px;
+    ion-item span:first-child {
+      width: 25%;
     }
-    .input-wrapper {
-        height: 30px;
+    ion-item span:nth-child(2) {
+      max-width: 45%;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
-    .list-ios[no-lines] ion-list-header,
-    .list-ios[no-lines] ion-item-options,
-    .list-ios[no-lines] .item,
-    .list-ios[no-lines] .item .item-inner,
-    .list-md[no-lines] .item-block,
-    .list-md[no-lines] ion-item-options,
-    .list-md[no-lines] .item .item-inner {
-        min-height: 35px;
+    ion-item span:nth-child(n+2) {
+      font-weight: 700;
     }
-    .item-ios.item-block .item-inner {
-        padding: 0;
+  }
+  .more-list-btn {
+    width: 110px;
+    position: relative;
+    margin-top: -6%;
+    background-color: white;
+    height: 35px;
+  }
+  .line {
+    height: 1px !important;
+    margin-top: 5px !important;
+    margin-bottom: 0 !important;
+    width: 30px;
+  }
+  .input-wrapper {
+    height: 30px;
+  }
+  .list-ios[no-lines] ion-list-header,
+  .list-ios[no-lines] ion-item-options,
+  .list-ios[no-lines] .item,
+  .list-ios[no-lines] .item .item-inner,
+  .list-md[no-lines] .item-block,
+  .list-md[no-lines] ion-item-options,
+  .list-md[no-lines] .item .item-inner {
+    min-height: 35px;
+  }
+  .item-ios.item-block .item-inner {
+    padding: 0 !important;
+  }
+  .item-ios,
+  .item-md {
+    padding-left: 0 !important;
+  }
+  .button-md {
+    text-transform: none;
+  }
+  .label {
+    padding: 0 !important;
+    margin: 0 15px !important;
+    display: flex;
+    justify-content: space-between;
+  }
+  .updated-at {
+    margin-top: 10px !important;
+    margin-left: 5px !important;
+    display: inline-flex;
+    justify-content: flex-start;
+    img {
+      margin-right: 10px !important;
     }
-    .item-ios,
-    .item-md {
-        padding-left: 0;
-    }
-    .button-md {
-        text-transform: none;
-    }
-    .label {
-        padding: 0;
-        margin: 0 15px;
-        display: flex;
-        justify-content: space-between;
-    }
-    .updated-at {
-        margin-top: 10px;
-        margin-left: 5px;
-        display: inline-flex;
-        justify-content: flex-start;
-        img {
-            margin-right: 10px;
-        }
-    }
-    #map {
-        z-index: -1;
-        pointer-events: none;
-        height: 300px;
-        margin-top: -40px;
-    }
+  }
+  #map {
+    z-index: -1;
+    pointer-events: none;
+    height: 300px;
+    margin-top: -40px !important;
+  }
+
+  .time-row {
+    width: calc(100% + 20px);
+    margin-left: -10px !important;
+    padding: 0 5px !important;
+  }
 }

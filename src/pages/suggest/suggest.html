@@ -14,8 +14,10 @@
 
 
 <ion-content>
-  <!--*ngIf="isLoggedIn"-->
-    <form >
+
+    <form  *ngIf="isLoggedIn" >
+
+  <!--<form>-->
 
         <ion-grid>
             <ion-row style="margin-top: -10px">
@@ -87,12 +89,12 @@
             <div class="btn-in-search-container">
 
 
-                <button (click)="onClean()" *ngIf="isBarFound" outline class="btn-search" ion-button color="primary">
+                <button type="button" (click)="onClean()" *ngIf="isBarFound" outline class="btn-search" ion-button color="primary">
 
               Limpar
             </button>
 
-                <button (click)="onSearch()" class="btn-search" ion-button color="primary">
+                <button type="submit" (click)="onSearch()" class="btn-search" ion-button color="primary">
 
                 {{ isBarFound?  'Continuar': 'Procurar'   }}
             </button>
@@ -103,12 +105,12 @@
     </form>
 
 
-    <!--<div *ngIf="!isLoggedIn" class="not-logged">-->
-      <!--<p>Precisamos que você faça o login para poder cadastrar um bar!</p>-->
-      <!--<button (click)="onLoginWithFacebook()" class="facebook-btn" color="primary" ion-button icon-left>-->
-        <!--<ion-icon name="logo-facebook"></ion-icon>-->
-        <!--Login com o Facebook-->
-      <!--</button>-->
-    <!--</div>-->
+    <div *ngIf="!isLoggedIn" class="not-logged">
+      <p>Precisamos que você faça o login para poder cadastrar um bar!</p>
+      <button (click)="onLoginWithFacebook()" class="facebook-btn" color="primary" ion-button icon-left>
+        <ion-icon name="logo-facebook"></ion-icon>
+        Login com o Facebook
+      </button>
+    </div>
 
 </ion-content>

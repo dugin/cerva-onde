@@ -44,7 +44,8 @@
                           </div>
                     </div>-->
 
-                    <img class="img-logo-bar" [src]="bar.logo" />
+                    <img class="img-logo-bar" [src]="bar.logo? bar.logo : 'assets/cerva-banner.jpg'" class="slide-image"/>
+
 
                     <ion-card-content style="text-align: center">
                         <ion-card-title class="bar">
@@ -52,8 +53,10 @@
                             <hr class="line">
 
                         </ion-card-title>
-
-                        <span class="place"> {{bar.address.neighborhood}} </span><span class="distance"> {{roundDistance(bar.distance)}} km</span>
+                    <div class="place-wrapper">
+                        <span class="place"> {{bar.address.neighborhood}} </span>
+                      <span class="distance"> {{roundDistance(bar.distance)}} km</span>
+                    </div>
 
                     </ion-card-content>
                 </ion-card>

@@ -32,18 +32,19 @@
                 </ion-row>-->
 
 
-            <div *ngFor="let beer of beerBar; let i = index" [style.margin-top]="i == 0? '-15px': '0px'">
+            <div *ngFor="let beer of beerBar; let i = index" [style.margin-top]="i == 0? '-5px': '0px'">
 
-                <div>
+                <div class="beers-container">
 
 
                     <ion-row>
                         <ion-col col-12>
                             <ion-item >
                                 <div class="search_container">
-                                    <ion-searchbar [value]="beer.beer.name" (ionInput)="autoCompleteBeers($event, i)"
-                                                   color="accent" [debounce]="400"
-                                                   placeholder="Cerveja" [showCancelButton]="false">
+                                    <ion-searchbar [ngModel]="beer.beer.name" (ionInput)="autoCompleteBeers($event, i)"
+                                                   (ionCancel)="showAutoComplete[i].notFound = false"
+                                                   color="accent" [debounce]="400" name="name{{i}}"
+                                                   placeholder="Cerveja">
                                     </ion-searchbar>
                                 </div>
                             </ion-item>
@@ -58,12 +59,16 @@
                         <!--</ion-col>-->
 
 
-                        <ion-col *ngIf="showAutoComplete[i]" col-12>
+                        <ion-col *ngIf="showAutoComplete[i].autoComplete" col-12>
 
-                            <ion-list no-lines>
+                            <ion-list class="search-wrapper" no-lines>
                                 <button ion-item *ngFor="let str of beersString" detail-none (click)="selectAutoComplete(str,i)">
                                     {{ str }}
                                 </button>
+                              <button ion-item detail-none class="beer-not-found" (click)="selectBeerNotFound(i)">
+                                  Não encontrada. Cadastrar nova?
+                              </button>
+
                             </ion-list>
                         </ion-col>
                     </ion-row>
@@ -95,10 +100,7 @@
                             </ion-item>
                         </ion-col>
 
-
                     </ion-row>
-
-                    <hr *ngIf="bar?.beer?.length > 1+i" class="line">
                 </div>
             </div>
 

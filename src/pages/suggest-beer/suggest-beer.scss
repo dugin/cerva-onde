@@ -1,23 +1,27 @@
 page-suggest-beer {
 
   .searchbar-ios, searchbar-md{
-    padding:  0;
-    margin-bottom: -7px;
+    padding:  0 !important;
+    margin-bottom: -7px !important;
 
 
   }
 
   .label-md{
-    margin: 13px 8px 0px 0;
-    border-bottom:0;
+    margin: 13px 8px 0px 0 !important;
+    border-bottom:0 !important;
   }
 
   .list-ios, .list-md{
-    margin-top:-10px;
-     padding-left: 10px;
+    margin-top:-10px  !important;
+     padding-left: 10px  !important;
     border-left: 1px solid;
     border-right: 1px solid;
     border-bottom: 1px solid;
+    position: absolute ;
+    z-index: 1;
+    width: 96%;
+    background-color: white;
   }
   .searchbar-ios.searchbar-left-aligned .searchbar-search-icon,
   .searchbar-md .searchbar-search-icon, .searchbar-md .searchbar-md-cancel{
@@ -25,7 +29,7 @@ page-suggest-beer {
   }
 
   .searchbar-md .searchbar-input{
-    padding: 10px 0;
+    padding: 10px 0 !important;
     box-shadow: none;
   }
 
@@ -34,7 +38,7 @@ page-suggest-beer {
   }
 
   .searchbar-ios.searchbar-left-aligned .searchbar-input{
-    padding-left: 0px;
+    padding-left: 0px !important;
   }
 
    form{
@@ -48,14 +52,14 @@ page-suggest-beer {
 
 
   .line{
-    margin: 20px 0 0 -10px ;
+    margin: 20px 0 0 -10px   !important;
     background-color: color($colors, line) !important;
     height: 1px !important;
     width: calc(100% + 20px);
   }
 
 .label-size{
-        margin: 13px 8px 8px 0;
+        margin: 13px 8px 8px 0  !important;
         color: color($colors, primary) !important;
     }
 
@@ -67,6 +71,8 @@ page-suggest-beer {
         height: 100%;
          flex-direction: column;
          justify-content: flex-end;
+       min-height: 70px;
+
 
 
     }
@@ -78,7 +84,57 @@ page-suggest-beer {
     }
 
 
+  .grid{
+.beers-container{
+  border: 1px solid #c9b9b2;
+  background-color: color($colors, background_2);
+  padding: 0 10px 10px 10px;
+  margin-top: 10px;
+}
 
+  .beers-container:first-of-type{
+    margin-top: 10px;
+  }
+  }
+
+  .search-wrapper{
+    background-color: white !important;
+
+    .item-inner{
+      background-color: white !important;
+    }
+  }
+
+  ion-item, .item-inner,
+   .searchbar-ios, .searchbar-md,.searchbar-md .searchbar-input,  .searchbar-input-container,
+   .searchbar-ios.searchbar-left-aligned .searchbar-input{
+
+    background-color: color($colors, background_2) !important;
+
+  }
+
+  .beer-not-found {
+    width: calc(100% + 10px);
+    margin-left: -10px !important;
+
+    .item-inner{
+      padding-left: 10px ;
+      background-color: color($colors, list_border) !important  ;
+
+        font-size: 14px;
+    }
+
+
+
+  }
+
+
+}
+
+
+
+[dir="ltr"] .searchbar-md, [dir="rtl"] .searchbar-md {
+  padding: 8px 8px 0 0 !important;
 }
 
  .alert-md .alert-radio-label,

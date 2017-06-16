@@ -20,7 +20,7 @@
     <ion-slides class="slider" *ngIf="bar">
 
       <ion-slide>
-        <img [src]="bar.logo" class="slide-image"/>
+        <img [src]="bar.logo? bar.logo : 'assets/cerva-banner.jpg'" class="slide-image"/>
       </ion-slide>
       <ion-slide *ngFor="let photo of bar.photos">
         <img [src]="photo" class="slide-image"/>
@@ -52,20 +52,23 @@
 
       <hr class="line">
 
-      <ion-grid>
-        <ion-row>
+      <ion-grid class="time-row">
+        <ion-row >
           <ion-col col-6>
             <div *ngIf="setTime().type == 0" class="opening-hours"><span>{{setWeekDay()}} </span> <span>{{setTime().open}} - {{setTime().close}} </span>
             </div>
-            <div *ngIf="setTime().type != 0" class="opening-hours"><span>{{setWeekDay()}} </span> <span>{{setTime().msg}} </span>
+            <div *ngIf="setTime().type == 1 || setTime().type == 2" class="opening-hours"><span>{{setWeekDay()}} </span> <span>{{setTime().msg}} </span>
+            </div>
+            <div *ngIf="setTime().type == 3" class="opening-hours"><span>{{setWeekDay()}} </span> <span>Não cadastrado </span>
             </div>
 
 
           </ion-col>
 
           <ion-col col-6>
-            <span class="tel">  TEL</span> <span style="font-weight: 600"> {{bar.tel}} </span>
-          </ion-col>
+          <span class="tel"> TEL </span> <span class="tel-number" > {{bar.tel.length > 0? bar.tel : '&nbsp;&nbsp; -'}} </span>
+        </ion-col>
+
 
         </ion-row>
 
@@ -94,10 +97,10 @@
         <div *ngIf="beersLoaded">
 
 
-          <ion-item *ngFor="let beerBar of bar.beers">
+          <ion-item *ngFor="let beerBar of bar.beers | emptyBeer">
             <span> {{setSize(beerBar.size)}}</span>
             <span>{{beerBar.beer.name}}</span>
-            <span> <span style="font-size: 12px; font-weight: 400"> R$</span> {{displayPrice(beerBar.price)}}</span>
+            <span > <span style="font-size: 12px; font-weight: 400"> R$</span> {{displayPrice(beerBar.price)}}</span>
           </ion-item>
 
         </div>

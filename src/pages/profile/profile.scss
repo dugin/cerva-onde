@@ -34,25 +34,25 @@ page-profile {
 
     }
     h4 {
-        margin: 0;
+        margin: 0 !important;
         padding: 10px;
         background-color: color($colors, background_2);
         font-size: 17px;
     }
 
     .list-ios, .list-md{
-        margin-bottom: 0;
+        margin-bottom: 0 !important;
     }
     .label-ios,
     .label-md {
-        margin-left: 20px;
+        margin-left: 20px !important;;
          font-size: 14px;
     }
     .item-ios ion-avatar[item-left],
     .item-ios ion-thumbnail[item-left],
     .item-md ion-avatar[item-left],
     .item-md ion-thumbnail[item-left] {
-        margin: 8px 16px 8px 20px;
+        margin: 8px 16px 8px 20px !important;
     }
     .favourite-container {}
     .activity-container {}

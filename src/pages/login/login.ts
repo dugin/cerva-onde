@@ -6,6 +6,7 @@ import {FirebaseService} from '../../providers/firebase.service';
 import {DiagnosticService} from '../../providers/diagnostic.service';
 import {TabsPage} from '../tabs/tabs.page';
 import {UserModel} from '../../model/user';
+import {Firebase} from '@ionic-native/firebase';
 
 /*
  Generated class for the Login page.
@@ -22,10 +23,14 @@ export class LoginPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private facebookService: FacebookService,
-              private diagnosticService: DiagnosticService) {
+              private diagnosticService: DiagnosticService,
+  private firebase: Firebase) {
   }
 
   ionViewDidLoad() {
+
+    this.firebase.setScreenName('Login');
+
     console.log('ionViewDidLoad LoginPage');
   }
 

@@ -16,12 +16,12 @@ import {SuggestBeerPage} from '../pages/suggest-beer/suggest-beer';
 
 @Component({
   template: `
-    <ion-menu swipeEnabled="false" [content]="content" side="left" id="menu1">
-      <ib-page-nearby></ib-page-nearby>
-    </ion-menu>
-    <ion-menu swipeEnabled="false" [content]="content" side="right" id="menu2">
-      <ib-page-beers></ib-page-beers>
-    </ion-menu>
+    <!--<ion-menu swipeEnabled="false" [content]="content" side="left" id="menu1">-->
+      <!--<ib-page-nearby></ib-page-nearby>-->
+    <!--</ion-menu>-->
+    <!--<ion-menu swipeEnabled="false" [content]="content" side="right" id="menu2">-->
+      <!--<ib-page-beers></ib-page-beers>-->
+    <!--</ion-menu>-->
     <ion-nav #content [root]="rootPage"></ion-nav>`,
 })
 export class MyApp {
@@ -31,34 +31,34 @@ export class MyApp {
               statusBar: StatusBar,
               private splashScreen: SplashScreen,
               private diagnosticService: DiagnosticService,
-              private facebookService: FacebookService,) {
+              private facebookService: FacebookService) {
 
     platform.ready().then(() => {
-    this.rootPage = SuggestBeerPage;
+    // this.rootPage = TabsPage;
 
-      // const subs = facebookService.isLoggedIn()
-      //   .mergeMap((data) => {
-      //
-      //   if (data.status.localeCompare('unknown') === 0) {
-      //     this.rootPage = LoginPage;
-      //     return Observable.empty();
-      //
-      //   } else {
-      //     return this.diagnosticService.locationEnabled()
-      //   }
-      //
-      // })
-      //   .subscribe((data: boolean | null) => {
-      //
-      //     if (typeof data === 'boolean' )
-      //       if(data)
-      //         this.rootPage = TabsPage;
-      //     else
-      //         this.rootPage = PermissionsPage;
-      //
-      //     subs.unsubscribe();
-      //
-      //   });
+      const subs = facebookService.isLoggedIn()
+        .mergeMap((data) => {
+
+        if (data.status.localeCompare('unknown') === 0) {
+          this.rootPage = LoginPage;
+          return Observable.empty();
+
+        } else {
+          return this.diagnosticService.locationEnabled()
+        }
+
+      })
+        .subscribe((data: boolean | null) => {
+
+          if (typeof data === 'boolean' )
+            if(data)
+              this.rootPage = TabsPage;
+          else
+              this.rootPage = PermissionsPage;
+
+          subs.unsubscribe();
+
+        });
 
 
       // Okay, so the platform is ready and our plugins are available.

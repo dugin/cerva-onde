@@ -5,13 +5,15 @@ export class BeerModel {
     public img: string;
     public style: string;
     public file: any;
+    public id: string;
 
     constructor(
         name?: string,
         producer?: string,
         img?: string,
         style?: string,
-        file?: any
+        file?: any,
+        id?: string
     ) {
 
         this.name = name || '';
@@ -19,5 +21,6 @@ export class BeerModel {
         this.img = img || '';
         this.style = style || '';
         this.file = file || '';
+        this.id = id || '';
     }
 }

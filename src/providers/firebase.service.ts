@@ -8,6 +8,7 @@ import {AngularFire, AuthMethods, AuthProviders, FirebaseApp, FirebaseListObserv
 import * as firebase from 'firebase';
 import {BeersBarModel} from "../model/beers-bar";
 import {BeersBarLogModel} from "../model/beers-bar-log";
+import {BeerTempModel} from '../model/beerTemp';
 declare var require: any
 
 var GeoFire = require('../../node_modules/geofire/dist/geofire.js');
@@ -35,7 +36,7 @@ export class FirebaseService {
 
 
   logOut() {
-    return  this.firebaseApp.auth().signOut();
+    return this.firebaseApp.auth().signOut();
   }
 
   getLoggedUser() {
@@ -50,8 +51,6 @@ export class FirebaseService {
         () => {
           observer.complete();
         });
-
-
     })
 
   }
@@ -113,20 +112,20 @@ export class FirebaseService {
 
   pushBar(bar: BarModel) {
 
-    return new Observable<any>(obs => {
+      return new Observable<any>(obs => {
 
-      this.af.database.list('/bars')
-        .push(bar)
-        .then((data) => {
-          obs.next(data);
-          obs.complete();
-        })
-        .catch((error) => {
-          obs.error(error);
-        })
+        this.af.database.list('/bars')
+          .push(bar)
+          .then((data) => {
+            obs.next(data);
+            obs.complete();
+          })
+          .catch((error) => {
+            obs.error(error);
+          })
 
 
-    })
+      })
 
 
   }
@@ -146,6 +145,30 @@ export class FirebaseService {
 
     return Observable.from(beers)
       .mergeMap((beer) => this.af.database.list('/beersBar').push(beer))
+
+
+  }
+
+  pushUsersLog(type: number, userID: string, barID?: string, nameBar?: string,  beersBarID?: string, nameBeer?: string ){
+
+
+    if (type === -1 || type === 0 || type === 2 || type === 3) {
+      return this.af.database.list('usersLog/' + userID)
+        .push({
+          barID: barID,
+          type: type,
+          bar: nameBar
+        });
+    }
+    else if (type === 1 || type === 4) {
+      return this.af.database.list('usersLog/' + userID)
+        .push({
+          beersBarID: beersBarID,
+          type: type,
+          bar: nameBar,
+          beer: nameBeer
+        });
+    }
 
 
   }
@@ -176,6 +199,33 @@ export class FirebaseService {
       });
 
     })
+  }
+
+  pushBeersTemp(beerTemp: BeerTempModel){
+
+    console.log('pushBeersTemp');
+    console.dir(beerTemp);
+
+    let id = beerTemp.beersBarID;
+    delete beerTemp.beersBarID;
+
+
+
+    return new Observable<any>(obs => {
+
+      this.af.database.object('/beersTemp/' + id)
+        .set(beerTemp)
+        .then((data) => {
+          obs.next(data);
+          obs.complete();
+        })
+        .catch((error) => {
+          obs.error(error);
+        })
+
+    });
+
+
   }
 
   getBar(id: string) {
